@@ -2,10 +2,12 @@
 #include "qdebug.h"
 #include "qevent.h"
 #include "qgridlayout.h"
+#include "qkeysequence.h"
 #include "qlabel.h"
 #include "qmainwindow.h"
 #include "qnamespace.h"
 #include "qobject.h"
+#include "qobjectdefs.h"
 #include "qrandom.h"
 #include "qsizepolicy.h"
 #include "qwidget.h"
@@ -16,18 +18,28 @@
 #include <QKeyEvent>
 #include <QRandomGenerator>
 #include <QMessageBox>
+#include <QAction>
+#include <QToolBar>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
+    count(1),
     scene(new QWidget(this)),
     game(new QGridLayout(scene)),
     hasfood(false),
-    isrun(false)
+    isrun(false),
+    changelevel(new QAction(tr("changelevel"),this))
 {
     setFixedSize(500,500);
     timer = new QTimer(this);
     timer->start(1000/3);
+    changelevel->setShortcut(QKeySequence::Open);
+    changelevel->setStatusTip(tr("change the level"));
+    connect(this->changelevel,SIGNAL(triggered()),this,SLOT(changethelevel()));
+    QToolBar *toolBar = addToolBar(tr("&File"));
+    toolBar->addAction(changelevel);
+    
     setCentralWidget(scene);
-
+    statusBar();
     //game->setHorizontalSpacing(100);
     // 设置垂直间距
     //game->setVerticalSpacing(100);
@@ -157,5 +169,21 @@ void MainWindow::createfood(){
         snakes[x][y]=food;
         hasfood=true;
         repaint();
+    }
+}
+void MainWindow::changethelevel(){
+    switch (count) {
+    case 1:
+        timer->start(100/3);
+        count=2;
+        break;
+    case 2:
+        timer->start(300/3);
+        count=3;
+        break;
+    case 3:
+        timer->start(1000/3);
+        count=1;
+        break;
     }
 }

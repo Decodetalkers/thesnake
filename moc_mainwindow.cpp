@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[8];
-    char stringdata0[62];
+    QByteArrayData data[9];
+    char stringdata0[77];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,11 +39,12 @@ QT_MOC_LITERAL(3, 20, 11), // "eventFilter"
 QT_MOC_LITERAL(4, 32, 6), // "object"
 QT_MOC_LITERAL(5, 39, 7), // "QEvent*"
 QT_MOC_LITERAL(6, 47, 5), // "event"
-QT_MOC_LITERAL(7, 53, 8) // "gameover"
+QT_MOC_LITERAL(7, 53, 8), // "gameover"
+QT_MOC_LITERAL(8, 62, 14) // "changethelevel"
 
     },
     "MainWindow\0control\0\0eventFilter\0object\0"
-    "QEvent*\0event\0gameover"
+    "QEvent*\0event\0gameover\0changethelevel"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +54,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,13 +62,15 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x09 /* Protected */,
-       3,    2,   30,    2, 0x09 /* Protected */,
-       7,    0,   35,    2, 0x09 /* Protected */,
+       1,    0,   34,    2, 0x09 /* Protected */,
+       3,    2,   35,    2, 0x09 /* Protected */,
+       7,    0,   40,    2, 0x09 /* Protected */,
+       8,    0,   41,    2, 0x09 /* Protected */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Bool, QMetaType::QObjectStar, 0x80000000 | 5,    4,    6,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -83,6 +86,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: { bool _r = _t->eventFilter((*reinterpret_cast< QObject*(*)>(_a[1])),(*reinterpret_cast< QEvent*(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 2: _t->gameover(); break;
+        case 3: _t->changethelevel(); break;
         default: ;
         }
     }
@@ -117,13 +121,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

@@ -25,9 +25,10 @@ public:
 protected slots: 
     void control();
     bool eventFilter(QObject *object, QEvent *event);
-
     void gameover();
+    void changethelevel();
 private:
+    int count;
     void handleKeyPress(QKeyEvent *event);
     QWidget *scene;
     QLabel *asnake[16][16];
@@ -38,6 +39,7 @@ private:
     Snake *mysnake;
     bool hasfood;
     bool isrun;
-    void createfood(); 
+    void createfood();
+    QAction *changelevel;
 };
 #endif // MAINWINDOW_H
