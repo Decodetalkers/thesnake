@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "qboxlayout.h"
+#include "qlabel.h"
 #include "qobjectdefs.h"
 #include "qwidget.h"
 #include "qwindowdefs.h"
@@ -29,10 +31,18 @@ protected slots:
     void changethelevel();
 private:
     int count;
+    int thescore;
+    QString Level;
+    QString FOOD;
     void handleKeyPress(QKeyEvent *event);
     QWidget *scene;
     QLabel *asnake[16][16];
+    QLabel *score;
+    QLabel *thefood;
+    QLabel *thelevel;
     type snakes[16][16];
+    QVBoxLayout *Labels;
+    QHBoxLayout *thewindow;
     QGridLayout *game;
     void start();
     QTimer *timer;

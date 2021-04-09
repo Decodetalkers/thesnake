@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "qboxlayout.h"
 #include "qdebug.h"
 #include "qevent.h"
 #include "qgridlayout.h"
@@ -23,13 +24,21 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
     count(1),
+    thescore(0),
+    Level("lowest"),
+    FOOD("NoFood"),
     scene(new QWidget(this)),
-    game(new QGridLayout(scene)),
+    score(new QLabel()),
+    thefood(new QLabel()),
+    thelevel(new QLabel()),
+    Labels(new QVBoxLayout()),
+    thewindow(new QHBoxLayout(scene)),
+    game(new QGridLayout()),
     hasfood(false),
     isrun(false),
     changelevel(new QAction(tr("changelevel"),this))
 {
-    setFixedSize(500,500);
+    setFixedSize(600,500);
     timer = new QTimer(this);
     timer->start(1000/3);
     changelevel->setShortcut(QKeySequence::Open);
@@ -37,7 +46,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this->changelevel,SIGNAL(triggered()),this,SLOT(changethelevel()));
     QToolBar *toolBar = addToolBar(tr("&File"));
     toolBar->addAction(changelevel);
-    
+    Labels->addWidget(score);
+    Labels->addWidget(thefood);
+    Labels->addWidget(thelevel);
+    thewindow->addLayout(game);
+    thewindow->addLayout(Labels);
     setCentralWidget(scene);
     statusBar();
     //game->setHorizontalSpacing(100);
@@ -58,6 +71,12 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::start(){
+    score->setText(QString::number(thescore));
+    score->setFixedWidth(100);
+    thefood->setText(FOOD);
+    thefood->setFixedWidth(100);
+    thelevel->setText(Level);
+    thelevel->setFixedWidth(100);
     QSizePolicy sizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
     sizePolicy.setHorizontalStretch(0);
     sizePolicy.setVerticalStretch(0);
@@ -91,7 +110,8 @@ void MainWindow::control(){
         asnake[mysnake->asnake.front().first][mysnake->asnake.front().second]->setStyleSheet("QLabel{background-color:rgb(20,101,102);}");
         if(snakes[mysnake->asnake.front().first][mysnake->asnake.front().second]==snake)
         {
-            std::cout<<"gameover"<<std::endl;
+            thescore=0;
+            score->setText("Gameover");
             QTimer::singleShot(0,this,SLOT(gameover()));
         }
         if(snakes[mysnake->asnake.front().first][mysnake->asnake.front().second]==food)
@@ -101,6 +121,8 @@ void MainWindow::control(){
             mysnake->longer();
             createfood();
             asnake[mysnake->asnake.front().first][mysnake->asnake.front().second]->setStyleSheet("QLabel{background-color:rgb(20,101,102);}");
+            thescore+=50;
+            score->setText(QString::number(thescore));
         }
         //qDebug()<<asnake[mysnake->asnake.front().first][mysnake->asnake.front().second]->styleSheet();
         snakes[mysnake->asnake.front().first][mysnake->asnake.front().second]=snake;
@@ -165,6 +187,8 @@ void MainWindow::createfood(){
             x=(int)(QRandomGenerator::global()->bounded(16));
             y=(int)(QRandomGenerator::global()->bounded(16));
         }while(snakes[x][y]==snake);
+        FOOD= QString::number(x)+","+QString::number(y);
+        thefood->setText(FOOD);
         asnake[x][y]->setStyleSheet("QLabel{background-color:rgb(20,10,10);}");
         snakes[x][y]=food;
         hasfood=true;
@@ -176,14 +200,21 @@ void MainWindow::changethelevel(){
     case 1:
         timer->start(100/3);
         count=2;
+        Level="hightest";
+        thelevel->setText(Level);
         break;
     case 2:
         timer->start(300/3);
         count=3;
+        Level="medium";
+        thelevel->setText(Level);
         break;
     case 3:
         timer->start(1000/3);
         count=1;
+        Level="lowest";
+        thelevel->setText(Level);
+
         break;
     }
 }
