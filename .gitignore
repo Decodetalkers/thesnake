@@ -6,3 +6,4 @@ Demo_autogen
 Makefile
 .cache
 .qmake.stash
+compile_commands.json
