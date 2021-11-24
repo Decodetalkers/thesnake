@@ -42,7 +42,18 @@ MainWindow::MainWindow(QWidget *parent)
   // asnake[1][1]->setStyleSheet("QLabel{background-color:rgb(20,101,102);}");
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() {
+	scene->deleteLater();
+	delete score;
+	delete thefood;
+	delete thelevel;
+	//delete Labels;
+	delete thewindow;
+	game->deleteLater();
+	delete timer;
+	delete mysnake;
+	delete changelevel;
+}
 
 void MainWindow::start() {
   score->setText(QString::number(thescore));
