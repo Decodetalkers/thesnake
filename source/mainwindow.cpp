@@ -53,8 +53,8 @@ MainWindow::~MainWindow() {
   delete timer;
   delete mysnake;
   delete changelevel;
-	qDebug()<<"it is end";
-	// as shown, the scene will be deleted after the window is deleted.
+  qDebug() << "it is end";
+  // as shown, the scene will be deleted after the window is deleted.
 }
 
 void MainWindow::start() {

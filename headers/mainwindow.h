@@ -2,17 +2,17 @@
 #define MAINWINDOW_H
 
 #include "snake.h"
+#include <QDebug>
 #include <QGridLayout>
 #include <QLabel>
 #include <QMainWindow>
 #include <QString>
 #include <QTimer>
-#include <QDebug>
 class Scene : public QWidget {
-	Q_OBJECT
+  Q_OBJECT
 public:
-	Scene(QWidget *parent=nullptr):QWidget(parent){};
-	~Scene() { qDebug()<< "deleted";}
+  Scene(QWidget *parent = nullptr) : QWidget(parent){};
+  ~Scene() { qDebug() << "deleted"; }
 };
 class MainWindow : public QMainWindow {
   Q_OBJECT
