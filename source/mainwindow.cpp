@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "headers/mainwindow.h"
 #include "qboxlayout.h"
 #include "qdebug.h"
 #include "qevent.h"
@@ -12,7 +12,7 @@
 #include "qrandom.h"
 #include "qsizepolicy.h"
 #include "qwidget.h"
-#include "snake.h"
+#include "headers/snake.h"
 #include <QWidget>
 #include <QDebug>
 #include <QEvent>
