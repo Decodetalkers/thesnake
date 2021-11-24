@@ -36,7 +36,7 @@ FILE(GLOB HEADER_FILES "headers/*.h")
 
 add_custom_target(format
     COMMAND clang-format -i source/*
-    && clang-format -i header/*
+    && clang-format -i headers/*
     )
 add_custom_target(code_check
     COMMAND scan-build --use-analyzer `which clang++` make
