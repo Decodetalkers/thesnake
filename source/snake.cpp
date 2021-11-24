@@ -1,7 +1,6 @@
 #include "headers/snake.h"
 #include <algorithm>
 #include <utility>
-#include <QDebug>
 Snake::Snake() : moveDirection(NoMove) {
   asnake.push_back(std::make_pair(15, 2));
   asnake.push_back(std::make_pair(14, 2));

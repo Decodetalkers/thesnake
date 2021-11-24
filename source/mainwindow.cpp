@@ -43,16 +43,16 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {
-	scene->deleteLater();
-	delete score;
-	delete thefood;
-	delete thelevel;
-	//delete Labels;
-	delete thewindow;
-	game->deleteLater();
-	delete timer;
-	delete mysnake;
-	delete changelevel;
+  scene->deleteLater();
+  delete score;
+  delete thefood;
+  delete thelevel;
+  // delete Labels;
+  delete thewindow;
+  game->deleteLater();
+  delete timer;
+  delete mysnake;
+  delete changelevel;
 }
 
 void MainWindow::start() {
