@@ -7,6 +7,13 @@
 #include <QMainWindow>
 #include <QString>
 #include <QTimer>
+#include <QDebug>
+class Scene : public QWidget {
+	Q_OBJECT
+public:
+	Scene(QWidget *parent=nullptr):QWidget(parent){};
+	~Scene() { qDebug()<< "deleted";}
+};
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
@@ -26,7 +33,7 @@ private:
   QString Level;
   QString FOOD;
   void handleKeyPress(QKeyEvent *event);
-  QWidget *scene;
+  Scene *scene;
   QLabel *asnake[16][16];
   QLabel *score;
   QLabel *thefood;

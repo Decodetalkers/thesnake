@@ -10,7 +10,7 @@
 #include <QWidget>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), count(1), thescore(0), Level("lowest"),
-      FOOD("NoFood"), scene(new QWidget(this)), score(new QLabel()),
+      FOOD("NoFood"), scene(new Scene(this)), score(new QLabel()),
       thefood(new QLabel()), thelevel(new QLabel()), Labels(new QVBoxLayout()),
       thewindow(new QHBoxLayout(scene)), game(new QGridLayout()),
       hasfood(false), isrun(false),
@@ -53,6 +53,8 @@ MainWindow::~MainWindow() {
   delete timer;
   delete mysnake;
   delete changelevel;
+	qDebug()<<"it is end";
+	// as shown, the scene will be deleted after the window is deleted.
 }
 
 void MainWindow::start() {
