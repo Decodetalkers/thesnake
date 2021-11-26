@@ -20,7 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
   timer->start(1000 / 3);
   changelevel->setShortcut(QKeySequence::Open);
   changelevel->setStatusTip(tr("change the level"));
-  connect(this->changelevel, SIGNAL(triggered()), this, SLOT(changethelevel()));
+  //connect(this->changelevel, SIGNAL(triggered()), this, SLOT(changethelevel()));
+  connect(this->changelevel, &QAction::triggered, this, &MainWindow::changethelevel);
   QToolBar *toolBar = addToolBar(tr("&File"));
   toolBar->addAction(changelevel);
   Labels->addWidget(score);
@@ -86,7 +87,7 @@ void MainWindow::start() {
 
   snakes[mysnake->asnake.back().first][mysnake->asnake.back().second] = snake;
   createfood();
-  connect(this->timer, SIGNAL(timeout()), this, SLOT(control()));
+  connect(this->timer, &QTimer::timeout, this, &MainWindow::control);
 }
 void MainWindow::control() {
   if (mysnake->currentDirection() != Snake::NoMove) {
@@ -123,7 +124,7 @@ void MainWindow::control() {
   isrun = false;
 }
 void MainWindow::gameover() {
-  disconnect(this->timer, SIGNAL(timeout()), this, SLOT(control()));
+  disconnect(this->timer, &QTimer::timeout, this, &MainWindow::control);
   if (QMessageBox::Yes ==
       QMessageBox::information(NULL, tr("Game Over"), tr("Again?"),
                                QMessageBox::Yes | QMessageBox::No,
